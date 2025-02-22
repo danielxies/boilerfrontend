@@ -100,7 +100,7 @@ export default function ResultsPage() {
       {/* Content */}
       <div className="max-w-7xl mx-auto flex flex-col items-center space-y-12 mt-2">
         <div className="w-full flex justify-between items-center">
-          <h1 className="text-5xl font-bold text-white">You did <GradientText>Great!</GradientText> Let's break it down.</h1>
+          <h1 className="text-5xl font-bold text-white">You did <GradientText>Great!</GradientText> Let&apos;s break it down.</h1>
           <InteractiveHoverButton className="bg-white text-black border-white [&_.rounded-full]:bg-black [&_span]:group-hover:text-white [&_.absolute]:text-white">
             Download
           </InteractiveHoverButton>

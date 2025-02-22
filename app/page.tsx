@@ -145,7 +145,7 @@ export default function LandingPage() {
               cursorColor="bg-rose-400" 
             />
             <p className={`${vastago.className} text-[#d1cfbf] mt-2 text-2xl tracking-wide`}>
-              Built by students, for students– we're here to help you land your dream job.
+              Built by students, for students&ndash; we&apos;re here to help you land your dream job.
             </p>
             <button className={`${vastago.className} mt-4 bg-rose-400 text-white px-6 py-2 rounded-md hover:bg-rose-500 transition-colors text-lg`}>
               Get Started
@@ -206,7 +206,7 @@ export default function LandingPage() {
                 />
               </h2>
               <p className={`${vastago.className} text-[#d1cfbf] text-xl text-center mb-12`}>
-                Your interview prep shouldn't be confined to a desk. Practice and prepare from anywhere, anytime – we've designed our platform to adapt to your lifestyle.
+                Your interview prep shouldn&apos;t be confined to a desk. Practice and prepare from anywhere, anytime &ndash; we&apos;ve designed our platform to adapt to your lifestyle.
               </p>
             </div>
           </div>
