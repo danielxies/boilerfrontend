@@ -11,6 +11,9 @@ import { AnimatedGradientText } from '@/components/magicui/animated-gradient-tex
 import { ChevronRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { WordRotate } from '@/components/magicui/word-rotate';
+import { useUser } from '@auth0/nextjs-auth0/client';
+import Link from 'next/link';
+import { UserMenu } from './components/UserMenu';
 
 interface GradientTextProps {
   children: React.ReactNode;
@@ -29,6 +32,7 @@ const GradientText = ({ children, className, onClick }: GradientTextProps) => (
 
 export default function LandingPage() {
   const router = useRouter();
+  const { user, isLoading } = useUser();
 
   const words = [
     // First line
@@ -107,9 +111,7 @@ export default function LandingPage() {
 
           {/* Sign In Button */}
           <div className="flex justify-end">
-            <button className="bg-[#d1d3c7] text-black px-6 py-1 rounded-md hover:bg-[#c1c3b7] transition-colors text-lg">
-              Sign In
-            </button>
+            <UserMenu />
           </div>
         </div>
       </nav>
@@ -147,7 +149,10 @@ export default function LandingPage() {
             <p className={`${vastago.className} text-[#d1cfbf] mt-2 text-2xl tracking-wide`}>
               Built by students, for students&ndash; we&apos;re here to help you land your dream job.
             </p>
-            <button className={`${vastago.className} mt-4 bg-rose-400 text-white px-6 py-2 rounded-md hover:bg-rose-500 transition-colors text-lg`}>
+            <button 
+              onClick={() => router.push('/bouncer')}
+              className={`${vastago.className} mt-4 bg-rose-400 text-white px-6 py-2 rounded-md hover:bg-rose-500 transition-colors text-lg`}
+            >
               Get Started
             </button>
             

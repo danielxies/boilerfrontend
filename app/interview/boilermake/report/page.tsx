@@ -91,31 +91,15 @@ export default function DashboardPage() {
 
   return (
     <>
-      <div className="hidden flex-col md:flex bg-black min-h-screen">
-        <div className="border-b border-[#1a1a1a]">
-          <div className="flex h-16 items-center px-4">
-            <Link href="/" className="flex items-center">
-              <Image
-                src="/icon.png"
-                width={40}
-                height={40}
-                alt="Logo"
-                className="mr-2 invert"
-              />
-            </Link>
-            <div className="ml-auto flex items-center space-x-4">
-              <Search />
-            </div>
-          </div>
-        </div>
-        <div className="flex-1 space-y-4 p-8 pt-6">
+      <div className="hidden flex-col md:flex bg-[#1a1a1a] min-h-screen pt-24">
+        <div className="flex-1 space-y-4 p-8">
           <div className="flex items-center justify-between space-y-2">
-            <h2 className="text-3xl font-bold tracking-tight text-white">Well done. Let's see how you did.</h2>
+            <h2 className="text-5xl font-bold tracking-tight text-white">Well Done. Let's see how you did.</h2>
             <div className="flex items-center space-x-2">
               <Button variant="outline" className="bg-[#1a1a1a] text-white border-[#2a2a2a] hover:bg-[#2a2a2a]">Download Report</Button>
             </div>
           </div>
-          <div className="space-y-4">
+          <div className="space-y-3">
             <Scoreboard scores={scoreData} />
             <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-7">
               <Card className="col-span-5 bg-[#1a1a1a] border-[#2a2a2a] rounded-lg h-fit">

@@ -45,10 +45,6 @@ const GradientText = ({ children }: { children: React.ReactNode }) => (
 export default function InterviewPage() {
   const router = useRouter();
 
-  const goHome = () => {
-    router.push('/');
-  };
-
   const handleCompanyClick = (company: Company) => {
     if (company.route) {
       router.push(company.route);
@@ -56,18 +52,8 @@ export default function InterviewPage() {
   };
 
   return (
-    <div className="relative min-h-screen bg-[#1a1a1a] p-8">
-      <div className="absolute top-4 left-4 z-50">
-        <Image 
-          src="/icon.png" 
-          alt="Apollo Project Icon" 
-          width={31} 
-          height={31} 
-          onClick={goHome}
-          className="cursor-pointer invert brightness-200"
-        />
-      </div>
-      <div className="max-w-7xl mx-auto">
+    <div className="min-h-screen bg-[#1a1a1a] pt-24">
+      <div className="max-w-7xl mx-auto px-8">
         <h1 className="text-4xl font-bold text-white text-center mb-12">
           Choose a <GradientText>Company</GradientText> to Practice For
         </h1>
