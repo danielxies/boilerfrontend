@@ -5,7 +5,7 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "remote.ai",
+  title: "pr",
   description: "ai interview prep",
 };
 
