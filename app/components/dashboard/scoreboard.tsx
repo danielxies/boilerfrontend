@@ -84,12 +84,8 @@ export function Scoreboard({ scores }: ScoreboardProps) {
     score: number;
   } | null>(null);
 
-  // Calculate average of all numeric scores
-  const numericScores = Object.entries(scores)
-    .filter(([key, value]) => !key.includes('comment') && !key.includes('summary') && key !== 'passion' && typeof value === 'number')
-    .map(([_, value]) => value as number);
-  
-  const averageScore = numericScores.reduce((a, b) => a + b, 0) / numericScores.length;
+  // Use the overall score directly from the API
+  const displayScore = scores.overall_score || 0;
 
   return (
     <div className="grid gap-4 grid-cols-11">
@@ -104,10 +100,10 @@ export function Scoreboard({ scores }: ScoreboardProps) {
         <CardContent className="flex-1 flex items-center justify-center">
           <div className="flex items-center justify-center">
             <NumberTicker 
-              value={averageScore} 
+              value={displayScore} 
               decimalPlaces={1}
               className="text-5xl font-bold"
-              style={{ color: getScoreColor(averageScore) }}
+              style={{ color: getScoreColor(displayScore) }}
             />
           </div>
         </CardContent>

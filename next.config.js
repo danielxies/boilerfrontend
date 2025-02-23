@@ -11,6 +11,18 @@ const nextConfig = {
     // your project has ESLint errors.
     ignoreDuringBuilds: true,
   },
+  // Disable error overlay
+  onError: () => {},
+  // Disable React strict mode for the demo
+  reactStrictMode: false,
+  // Configure image optimization
+  images: {
+    domains: ['localhost'],
+    unoptimized: true
+  },
+  // Ensure public assets are accessible
+  assetPrefix: '',
+  basePath: '',
 }
 
 module.exports = nextConfig 

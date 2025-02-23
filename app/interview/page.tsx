@@ -4,6 +4,8 @@ import { useState } from 'react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import SimpleButton from '../components/SimpleButton';
+import { alice, vastago } from '../fonts';
+import { Lock } from 'lucide-react';
 
 interface Company {
   name: string;
@@ -33,7 +35,6 @@ const companies: Company[] = [
   { name: 'Twitter', ticker: 'X', logo: '/companies/twitter.png' },
   { name: 'LinkedIn', ticker: 'MSFT', logo: '/companies/linkedin.png' },
   { name: 'Stripe', ticker: 'Private', logo: '/companies/stripe.png' },
-  { name: 'Palantir', ticker: 'PLTR', logo: '/companies/palantir.png' },
 ];
 
 const GradientText = ({ children }: { children: React.ReactNode }) => (
@@ -52,9 +53,9 @@ export default function InterviewPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#1a1a1a] pt-24">
+    <div className={`min-h-screen bg-[#1a1a1a] pt-24 ${alice.variable} ${vastago.variable}`}>
       <div className="max-w-7xl mx-auto px-8">
-        <h1 className="text-4xl font-bold text-white text-center mb-12">
+        <h1 className={`${alice.className} text-4xl font-bold text-white text-center mb-12`}>
           Choose a <GradientText>Company</GradientText> to Practice For
         </h1>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
@@ -63,18 +64,26 @@ export default function InterviewPage() {
               <SimpleButton
                 color="superdarkgray"
                 onClick={() => handleCompanyClick(company)}
-                className="relative"
+                className={`relative ${!company.route ? 'opacity-60 cursor-not-allowed' : ''}`}
                 buttonText={
-                  <div className="flex items-center space-x-4 px-4">
-                    <div className="relative w-6 h-6">
-                      <Image
-                        src={company.logo}
-                        alt={`${company.name} logo`}
-                        fill
-                        className="object-contain"
-                      />
+                  <div className="flex items-center justify-between w-full px-4">
+                    <div className="flex items-center space-x-4">
+                      <div className="relative w-6 h-6">
+                        <Image
+                          src={company.logo}
+                          alt={`${company.name} logo`}
+                          fill
+                          className="object-contain"
+                        />
+                      </div>
+                      <span className={`${vastago.className} text-lg`}>{company.name}</span>
                     </div>
-                    <span className="text-lg">{company.name}</span>
+                    {!company.route && (
+                      <div className="flex items-center space-x-2">
+                        <Lock className="w-3 h-3 text-[#666666]" />
+                        <span className="text-xs text-[#666666] font-medium">Coming Soon</span>
+                      </div>
+                    )}
                   </div>
                 }
               />
@@ -84,4 +93,4 @@ export default function InterviewPage() {
       </div>
     </div>
   );
-} 
+}

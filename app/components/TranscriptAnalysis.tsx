@@ -1,6 +1,7 @@
 "use client"
 
 import React, { useState } from 'react';
+import { AudioPlayer } from './AudioPlayer';
 
 interface InterviewExchange {
   interviewer: string;
@@ -11,6 +12,7 @@ interface InterviewExchange {
 
 interface TranscriptAnalysisProps {
   exchanges: InterviewExchange[];
+  audioFile?: string;
 }
 
 const GradientText = ({ children }: { children: React.ReactNode }) => (
@@ -33,7 +35,8 @@ const getColorForScore = (score: number) => {
 };
 
 export const TranscriptAnalysis: React.FC<TranscriptAnalysisProps> = ({
-  exchanges
+  exchanges,
+  audioFile,
 }) => {
   const [zoomLevel, setZoomLevel] = useState(1);
 
@@ -65,8 +68,15 @@ export const TranscriptAnalysis: React.FC<TranscriptAnalysisProps> = ({
           </button>
         </div>
       </div>
+
+      {audioFile && (
+        <div className="mb-4">
+          <AudioPlayer src={audioFile} />
+        </div>
+      )}
+
       <div 
-        className="space-y-3 max-h-[400px] overflow-y-auto pr-2"
+        className="space-y-3 max-h-[545px] overflow-y-auto pr-2"
         style={{ 
           fontSize: `${Math.round(14 * zoomLevel)}px`,
           lineHeight: '1.5'
@@ -75,40 +85,46 @@ export const TranscriptAnalysis: React.FC<TranscriptAnalysisProps> = ({
         {exchanges.map((exchange, index) => (
           <div 
             key={index} 
-            className="bg-[#111111] rounded-lg p-3 relative"
+            className="bg-[#2b2d31] rounded-lg p-3 relative border border-[#1e1f22]"
             style={{ padding: `${Math.round(12 * zoomLevel)}px` }}
           >
             <div className="flex">
-              <div className="flex-1 mr-6">
+              <div className="flex-1 mr-6 max-w-[600px]">
                 {/* Interviewer's question */}
                 <div className="mb-2">
                   <div className="text-white">
-                    <span className="font-bold">Interviewer:</span>{' '}
+                    <span className="font-bold text-[#5865f2]">Interviewer:</span>{' '}
                     <span className="italic">{exchange.interviewer}</span>
                   </div>
                 </div>
                 
                 {/* Interviewee's response */}
-                <div>
+                <div className="mb-2">
                   <div className="text-white">
-                    <span className="font-bold">You:</span>{' '}
+                    <span className="font-bold text-[#5865f2]">You:</span>{' '}
                     {exchange.interviewee}
+                  </div>
+                </div>
+
+                {/* Feedback */}
+                <div>
+                  <div className="text-[#949ba4] text-sm italic">
+                    <span className="font-bold text-[#b5bac1]">Feedback:</span>{' '}
+                    {exchange.interviewer_feedback}
                   </div>
                 </div>
               </div>
               
-              {/* Score indicator */}
+              {/* Score display */}
               <div 
-                className={`rounded-full flex-shrink-0 border border-white absolute right-3 top-1/2 -translate-y-1/2 ${
-                  exchange.score >= 8 ? 'bg-green-500' :
-                  exchange.score >= 6 ? 'bg-yellow-500' :
-                  'bg-red-500'
-                }`}
+                className="flex-shrink-0 absolute right-3 top-1/2 -translate-y-1/2 font-bold"
                 style={{ 
-                  width: `${Math.round(16 * zoomLevel)}px`,
-                  height: `${Math.round(16 * zoomLevel)}px`
+                  color: getColorForScore(exchange.score),
+                  fontSize: `${Math.round(16 * zoomLevel)}px`
                 }}
-              />
+              >
+                {exchange.score}/10
+              </div>
             </div>
           </div>
         ))}

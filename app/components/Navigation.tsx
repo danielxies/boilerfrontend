@@ -13,8 +13,11 @@ export function DashboardNavigation() {
   // Hide on landing page
   if (pathname === '/') return null;
 
+  // Check if we're on a technical page
+  const isTechnicalPage = pathname.startsWith('/technical');
+
   return (
-    <nav className="fixed top-0 w-full p-6 z-50 bg-[#1a1a1a]/80 backdrop-blur-sm">
+    <nav className={`fixed top-0 w-full p-6 z-50 ${isTechnicalPage ? 'bg-transparent' : 'bg-[#1a1a1a]/80 backdrop-blur-sm'}`}>
       <div className="max-w-7xl mx-auto flex justify-between items-center">
         {/* Left side with Logo and Back button */}
         <div className="flex items-center gap-4">

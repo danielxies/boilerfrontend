@@ -2,7 +2,7 @@
 
 import { TrendingUp } from "lucide-react"
 import { Card, CardContent, CardHeader, CardTitle, CardFooter, CardDescription } from "@/components/ui/card"
-import { PolarAngleAxis, PolarGrid, Radar, RadarChart as RechartsRadarChart, ResponsiveContainer, Bar, BarChart, XAxis, YAxis } from "recharts"
+import { PolarAngleAxis, PolarGrid, PolarRadiusAxis, Radar, RadarChart as RechartsRadarChart, ResponsiveContainer, Bar, BarChart, XAxis, YAxis } from "recharts"
 
 const GradientText = ({ children }: { children: React.ReactNode }) => (
   <span className="bg-gradient-to-r from-[#A07CFE] via-[#FE8FB5] to-[#FFBE7B] bg-clip-text text-transparent">
@@ -21,7 +21,6 @@ interface RadarChartProps {
     Detail: number
     Time: number
     Ethics: number
-    passion: number
   }
 }
 
@@ -36,7 +35,6 @@ export function RadarChart({ scores }: RadarChartProps) {
     { subject: 'Detail', score: scores.Detail },
     { subject: 'Time', score: scores.Time },
     { subject: 'Ethics', score: scores.Ethics },
-    { subject: 'Passion', score: scores.passion },
   ]
 
   const toolsData = [
@@ -62,6 +60,10 @@ export function RadarChart({ scores }: RadarChartProps) {
               <PolarAngleAxis 
                 dataKey="subject" 
                 tick={{ fill: '#666666', fontSize: 11 }}
+              />
+              <PolarRadiusAxis
+                domain={[0, 10]}
+                tick={false}
               />
               <Radar
                 name="Score"

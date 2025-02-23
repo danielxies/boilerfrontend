@@ -5,11 +5,22 @@ import type { NextRequest } from 'next/server'
 // List of public routes that don't require authentication
 const publicRoutes = ['/', '/quickstart', '/demo', '/contact', '/api/auth/login', '/api/auth/callback', '/api/auth/logout', '/unauthorized'];
 
+// Function to check if the request is for a public asset
+const isPublicAsset = (pathname: string) => {
+  return pathname.startsWith('/_next') || // Next.js assets
+         pathname.endsWith('.png') ||     // Images
+         pathname.endsWith('.jpg') ||
+         pathname.endsWith('.jpeg') ||
+         pathname.endsWith('.gif') ||
+         pathname.endsWith('.ico') ||     // Favicon
+         pathname.endsWith('.svg');       // SVG files
+};
+
 export async function middleware(req: NextRequest) {
   const { pathname } = req.nextUrl;
 
-  // Allow access to public routes without authentication check
-  if (publicRoutes.includes(pathname)) {
+  // Allow access to public routes and assets without authentication check
+  if (publicRoutes.includes(pathname) || isPublicAsset(pathname)) {
     return NextResponse.next();
   }
 
